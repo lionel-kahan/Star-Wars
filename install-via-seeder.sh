@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 USERNAME='root'
 PASSWORD=''
-DBNAME='test'
+DBNAME='db_starswar'
 HOST='localhost'
 
 USER_USERNAME='lionel'
@@ -14,3 +14,5 @@ DELETE FROM mysql.user WHERE user='$USER_USERNAME' and host='$USER_PASSWORD';
 GRANT ALL PRIVILEGES ON $DBNAME.* to '$USER_USERNAME'@'$HOST' IDENTIFIED BY '$USER_PASSWORD' WITH GRANT OPTION;
 EOF
 )
+
+php artisan migrate:refresh --seed

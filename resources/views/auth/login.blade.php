@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('content') 
+@section('content')
 <form method="POST" action="{{url('login')}}">
 {!! csrf_field() !!}
     <div class="form-text">

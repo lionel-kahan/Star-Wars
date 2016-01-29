@@ -2,14 +2,31 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Session;
 
 class Product extends Model
 {
     protected $fillable = ['category_id', 'name', 'slug', 'price', 'abstract','content', 'quantity', 'status', 'published_at'];
     protected $dates = ['published_at'];
+
+    public function inCart() {
+        if (!Session::has('cart')) return false;
+        $carts = Session::get('cart');
+        $return = array_key_exists($this->id, $carts);
+        return ($return) ;
+    }
+
 //    protected paginate=3;
+
+    public function commandDetails() {
+        return $this->belongsTo('App\CommandDetail');
+    }
+
+//    public scopeNbProductCommended () {
+//        return $this->commandDetails->command()->where('status', 'en cours')->sum('quantity');
+//    }
 
     public function category() {
         return $this->belongsTo('App\Category'); //pas d'utilisation d'alias ici pour app\Category

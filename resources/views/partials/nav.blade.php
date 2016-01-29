@@ -2,7 +2,7 @@
 <nav id="navigation" role="navigation">
     <h1 class="h1-like">Stars War</h1>
     <ul class="pas">
-        <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{url('/')}}">Accueil</a></li>
+        <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{url('/')}}">Home</a></li>
         @forelse($categories as $category)
             <li class="{{ Request::is('cat/' .  $category->id . '/' . $category->slug) ? 'active' : '' }}"><a href="{{url('cat', [$category->id, $category->slug])}}">{{$category->title}}</a></li>
         @empty

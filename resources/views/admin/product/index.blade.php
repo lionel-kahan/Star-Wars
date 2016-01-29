@@ -9,7 +9,8 @@
             <th class="txtcenter">Status</th>
             <th class="txtcenter">Name</th>
             <th class="txtcenter">Price</th>
-            <th class="txtcenter">Quantity</th>
+            <th class="txtcenter">Quantity in stock</th>
+            <th class="txtcenter">Quantity in command</th>
             <th class="txtcenter">Category</th>
             <th class="txtcenter">Tags</th>
             <th class="txtcenter">Published date</th>
@@ -23,6 +24,7 @@
                 <td><a href="{{url('admin/product', [$product->id, 'edit'])}}">{{$product->name}}</a></td>
                 <td>{{$product->price}}</td>
                 <td>{{$product->quantity}}</td>
+                <td>{{$product->quantityInCommand}}</td>
                 <td class="txtcenter">{{!empty($cat = $product->category)? $cat->title : 'No category'}}</td>
                 <td class="txtcenter">@if($tags = $product->tags)@foreach($tags as $tag ) {{$tag->name}}<br> @endforeach @endif</td>
                 <td class="txtcenter">{{$product->published_at}}</td>

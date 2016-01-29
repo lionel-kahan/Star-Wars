@@ -26,8 +26,13 @@
                     <div class="form-text">
                         <label class="label" for="quantity">Quantity</label>
                         <input class="input-text" type="text" id="quantity" name="quantity" value="{{$quantity}}" maxlength="4" size="1" pattern="[0-9]*">
+                        @if ($product->inCart())in the cart @endif
                         <div class="form-submit">
-                            <input type="submit" value="Add to the cart"">
+                            @if ($product->inCart())
+                                <input type="submit" value="Replace in the cart">
+                            @else
+                                <input type="submit" value="Add to the cart">
+                            @endif
                             @if($errors->has('quantity'))<span class="error">{{$errors->first('quantity')}}</span>@endif
                             <input type="hidden" value="{{$product->id}}" name="product_id">
                         </div>

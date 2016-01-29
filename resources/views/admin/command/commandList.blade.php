@@ -24,6 +24,11 @@
             </tr>
         @empty
         @endforelse
+        <tr style="font-weight: bold;">
+            <td colspan="2" style="text-align: right;">Total</td>
+            <td id="totalPrice" colspan="1" style="text-align: center;">{{number_format($totalPrice, 2)}}</td>
+            <td colspan="3" style="text-align: center;"></td>
+        </tr>
     </table>
     <div class="h6-like txtcenter">{!!$commands->links()!!}</div>
 @stop
