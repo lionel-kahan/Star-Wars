@@ -10,6 +10,7 @@ class Product extends Model
 {
     protected $fillable = ['category_id', 'name', 'slug', 'price', 'abstract','content', 'quantity', 'status', 'published_at'];
     protected $dates = ['published_at'];
+//    public $nbProductCurrentlyCommended;
 
     public function inCart() {
         if (!Session::has('cart')) return false;
@@ -21,12 +22,19 @@ class Product extends Model
 //    protected paginate=3;
 
     public function commandDetails() {
-        return $this->belongsTo('App\CommandDetail');
+        return $this->hasmany('App\CommandDetail');
     }
 
-//    public scopeNbProductCommended () {
-//        return $this->commandDetails->command()->where('status', 'en cours')->sum('quantity');
-//    }
+    public function nbProductCurrentlyCommended () {
+        $nbProductCurrentlyCommanded = 0;
+        $commandDetails = $this->commandDetails;
+        foreach ($commandDetails as $commandDetail) {
+            if ($commandDetail->command->status == 'en_cours') {
+                $nbProductCurrentlyCommanded += $commandDetail->quantity;
+            }
+        }
+        return ($nbProductCurrentlyCommanded);
+    }
 
     public function category() {
         return $this->belongsTo('App\Category'); //pas d'utilisation d'alias ici pour app\Category

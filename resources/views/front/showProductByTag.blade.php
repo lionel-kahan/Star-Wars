@@ -6,25 +6,24 @@
     </div>
     @forelse($products as $product)
         <div class="txtcenter wauto pas">
-            <div class="clear product grid-1-2 mw960p">
-                @if($pict=$product->picture)
-                    <div class="clearfix">
+            <div class="clear @if($pict=$product->picture)grid-1-2 flex-container @endif mw960p mauto">
+                <div class="clearfix flex-item-center"">
+                    @if($pict=$product->picture)
                         <img class="product_medium_image" src="{{url('upload', $pict->uri)}}">
                         {{--<img src="upload/{{$product->picture->uri}}" >--}}
-                    </div>
-                @endif
-                <div class="tags">
+                    @endif
+                </div>
+                <div class="flex-item-center"">
                     <h2><a href="{{url('prod', [$product->id, $product->slug])}}">{{$product->name}}</a></h2>
                     {{$product->abstract}}
                     <p>
-                        {{trans('app.tag')}} :
-                        @forelse($product->tags as $tag)
+                        Associated products in themes :
+                        @foreach($product->tags as $tag)
                             <a href="{{url('tag', [$tag->id, $tag->slug])}}">{{$tag->name}}</a>
-                        @empty
-                            {{trans('app.notag')}}
-                        @endforelse
+                        @endforeach
                     </p>
                     <h5>Catégories: <a href="{{url('cat', [$product->category->id, $product->category->slug])}}">{{$product->category->title}}</a></h5>
+                    <h5>Price : {{$product->price}}€</h5>
                 </div>
             </div>
         </div>

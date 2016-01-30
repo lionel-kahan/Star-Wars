@@ -3,7 +3,7 @@
 @section('content')
     <p>{{$title}}</p>
     <div class="txtcenter wauto">
-        <div class="clear product grid-2 mw960p">
+        <div class="clear grid-2 mw960p">
             @if($pict=$product->picture)
                 <div class="clearfix"><img class="product_image_large" src="{{url('upload', $pict->uri)}}"></div>
             @endif

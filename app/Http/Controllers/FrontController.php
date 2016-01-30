@@ -77,7 +77,7 @@ class FrontController extends Controller
     public function showProductByCategory($id, $slug='') {
         try {
             $category = Category::findOrFail($id);
-            $products = $category->products()->paginate(3);
+            $products = $category->products()->paginate(10);
         }catch(\Exception $e) {
             return view('front.no_category');
         }
@@ -89,7 +89,7 @@ class FrontController extends Controller
     public function showProductByTag($id, $slug='') {
         try {
             $tag = Tag::findOrFail($id);
-            $products = $tag->products()->paginate(3);
+            $products = $tag->products()->paginate(10);
         }catch(\Exception $e) {
             return view('front.no_tag');
         }

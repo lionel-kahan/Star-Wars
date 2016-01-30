@@ -14,6 +14,7 @@ class CommandController extends Controller
     }
 
      public function commandList() {
+
         $command = Command::paginate(20);
         return view('admin/command/commandList', [
             'commands'   => $command ,

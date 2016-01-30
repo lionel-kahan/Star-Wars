@@ -5,12 +5,13 @@
     <table class="table">
         <thead>
         <tr>
+            <th class="txtcenter">Id</th>
             <th class="txtcenter">Product</th>
             <th class="txtcenter">Status</th>
             <th class="txtcenter">Name</th>
             <th class="txtcenter">Price</th>
             <th class="txtcenter">Quantity in stock</th>
-            <th class="txtcenter">Quantity in command</th>
+            <th class="txtcenter">Quantity currently commanded</th>
             <th class="txtcenter">Category</th>
             <th class="txtcenter">Tags</th>
             <th class="txtcenter">Published date</th>
@@ -19,12 +20,13 @@
         </thead>
     @forelse($products->reverse() as $product)
             <tr>
-                <td class="txtcenter">@if ($product->Picture)<img class="product_small_image" src="{{url('upload', $product->picture->uri)}}" alt="{{$product->slug}}">@endif</td>
+                <td class="txtcenter">{{$product->id}}</td>
+                <td class="txtcenter">@if ($product->Picture)<a href="{{url('admin/product', [$product->id, 'edit'])}}"><img class="product_small_image" src="{{url('upload', $product->picture->uri)}}" alt="{{$product->slug}}"></a>@endif</td>
                 <td class="txtcenter"><a class="btn btn-{{$product->status}}" href="{{url('admin/product', ['status', $product->id])}}"><button>{{$product->status}}</button></a></td>
-                <td><a href="{{url('admin/product', [$product->id, 'edit'])}}">{{$product->name}}</a></td>
-                <td>{{$product->price}}</td>
-                <td>{{$product->quantity}}</td>
-                <td>{{$product->quantityInCommand}}</td>
+                <td class="txtcenter">{{$product->name}}</td>
+                <td class="txtcenter">{{$product->price}}</td>
+                <td class="txtcenter">{{$product->quantity}}</td>
+                <td class="txtcenter">{{$product->nbProductCurrentlyCommended()}}</td>
                 <td class="txtcenter">{{!empty($cat = $product->category)? $cat->title : 'No category'}}</td>
                 <td class="txtcenter">@if($tags = $product->tags)@foreach($tags as $tag ) {{$tag->name}}<br> @endforeach @endif</td>
                 <td class="txtcenter">{{$product->published_at}}</td>

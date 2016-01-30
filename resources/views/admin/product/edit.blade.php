@@ -17,8 +17,7 @@
             <div class="grid-3" >
                 <div>
                     @if ($product->Picture)
-                        <label class="label" for="image">Image</label>
-                        <img class="product_image" src="{{url('upload', $product->Picture->uri)}}" id="image">
+                        <img class="product_medium_image" src="{{url('upload', $product->Picture->uri)}}" id="image">
                         <div class="txtcenter">
                             <input type="checkbox" id="delImage" name="delImage">
                             <label for="delImage">Delete</label>
