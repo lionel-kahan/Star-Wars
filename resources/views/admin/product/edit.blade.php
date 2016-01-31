@@ -69,7 +69,7 @@
                 <div>
                     <div class="content">
                         <label class="label" for="content">Content</label>
-                        <textarea row="10" cols="100" name="content">{{$product->content}}</textarea>
+                        <textarea rows="5" cols="100" name="content">{{$product->content}}</textarea>
                     @if($errors->has('content'))<span class=""error">{{$errors->first('content')}}</span>@endif
                     </div>
                     <div class="form-select">
@@ -82,7 +82,7 @@
                     </div>
                     <div class="form-select">
                         <label class="label" for="tags">Tags</label>
-                        <select name="tags[]" id="tags" multiple size="7">
+                        <select name="tags[]" id="tags" multiple size="6">
                         @foreach($tags as $key => $value)
                                 <option value="{{$key}}" {{$product->hasTag($key)? 'selected' : ''}}>{{$value}}</option>
                             @endforeach
@@ -90,7 +90,7 @@
                     </div>
                 </div>
             </div>
-            <div class="form-submit txtcenter">
+            <div class="form-submit txtcenter mal">
                 <input type="submit" value="update">
             </div>
         </form>

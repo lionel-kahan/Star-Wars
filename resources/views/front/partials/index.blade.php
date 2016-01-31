@@ -10,13 +10,13 @@
                 <div class="clearfix flex-item-center">
                     @if($pict)
                         <img class="product_medium_image" src="{{url('upload', $pict->uri)}}">
-                        {{--<img src="upload/{{$product->picture->uri}}" >--}}
                     @endif
                 </div>
                     <div class="flex-item-center">
                         <h2><a href="{{url('prod', [$product->id, $product->slug])}}">{{$product->name}}</a></h2>
                         {{$product->abstract}}
-                        <h6>Catégories <a href="{{url('cat', [$product->category->id, $product->category->slug])}}">{{$product->category->title}}</a></h6>
+                        <span class="visually-hidden">{{$category = $product->category}}</span>
+                        <h6>Catégories <a href="{{url('cat', [$category->id, $category->slug])}}">{{$category->title}}</a></h6>
                         <span class="visually-hidden">{{$tags = $product->tags}}</span>
                         @if(isset($tags[0]))
                             <p> Associated products in themes :

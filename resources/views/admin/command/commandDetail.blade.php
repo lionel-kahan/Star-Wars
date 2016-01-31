@@ -15,9 +15,9 @@
         </thead>
         @foreach($commandDetails as $commandDetail)
             <tr>
-                <td class="txtcenter">{{$commandDetail->product->id}}</td>
-                <td class="txtcenter"><img class="product_small_image" src="{{url('upload', $commandDetail->product->picture->uri)}}" alt="{{$commandDetail->product->slug}}"></td>
-                <td><a href="{{url('prod', [$commandDetail->product->id, $commandDetail->product->slug])}}">{{$commandDetail->product->name}}</a></td>
+                <td class="txtcenter">@if(!empty($commandDetail->product)){{$commandDetail->product->id}}@endif</td>
+                <td class="txtcenter">@if(!empty($commandDetail->product))<img class="product_small_image" src="{{url('upload', $commandDetail->product->picture->uri)}}" alt="{{$commandDetail->product->slug}}">@endif</td>
+                <td>@if(!empty($commandDetail->product))<a href="{{url('prod', [$commandDetail->product->id, $commandDetail->product->slug])}}">{{$commandDetail->product->name}}</a>@endif</td>
                 <td class="txtcenter">{{$commandDetail->price}}</td>
                 <td class="txtcenter">{{$commandDetail->quantity}}</td>
             </tr>

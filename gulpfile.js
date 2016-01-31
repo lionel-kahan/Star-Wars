@@ -33,17 +33,17 @@ gulp.task('task_knacss_sass', function() {
     .pipe(gulp.dest(path.public.css))
 });
 
-gulp.task('task_js', function() {
-   return gulp.src(path.resources.js + '/*.js')
-    .pipe(uglify({onError: console.error.bind(console, 'JS ERROR')}))
-    .pipe(uglify())
-    .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest(path.public.js))
-});
+//gulp.task('task_js', function() {
+//   return gulp.src(path.resources.js + '/*.js')
+//    .pipe(uglify({onError: console.error.bind(console, 'JS ERROR')}))
+//    .pipe(uglify())
+//    .pipe(rename({suffix: '.min'}))
+//    .pipe(gulp.dest(path.public.js))
+//});
 
 gulp.task('watch', function() {
    gulp.watch(path.sass, ['task_app_sass', 'task_knacss_sass']);
-   gulp.watch(path.js, ['task_js']);
+   //gulp.watch(path.js, ['task_js']);
 });
 
 gulp.task('default', ['watch']);

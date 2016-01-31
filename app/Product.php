@@ -10,7 +10,6 @@ class Product extends Model
 {
     protected $fillable = ['category_id', 'name', 'slug', 'price', 'abstract','content', 'quantity', 'status', 'published_at'];
     protected $dates = ['published_at'];
-//    public $nbProductCurrentlyCommended;
 
     public function inCart() {
         if (!Session::has('cart')) return false;
@@ -18,8 +17,6 @@ class Product extends Model
         $return = array_key_exists($this->id, $carts);
         return ($return) ;
     }
-
-//    protected paginate=3;
 
     public function commandDetails() {
         return $this->hasmany('App\CommandDetail');
@@ -75,6 +72,8 @@ class Product extends Model
     }
 
     public function scopeOnline($query) {
-        return $query->where('status', '=', 'opened')->orderBy('published_at');
+        return $query->where('status', '=', 'opened')
+                     ->where('published_at', '<=', Carbon::now())
+                     ->orderBy('published_at', 'desc');
     }
 }

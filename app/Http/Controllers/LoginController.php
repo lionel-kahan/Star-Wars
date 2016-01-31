@@ -32,11 +32,11 @@ class LoginController extends Controller
                     'remember' => 'in:true'
                 ]);
 
-            $remember = !empty($request->input('remember')) ? true:false;
+            $remember = !empty($request->input('remember')) ? true : false;
             if(Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')], $remember)) {
                 return redirect()->intended('admin');
             } else {
-                return back()->withInput($request->only('email', 'remember'))->with(['message' => trans('app.noAuth'), 'alert' => 'warning']);
+                return back()->withInput($request->only('email', 'remember'))->with(['message' => 'Adresse email or password invalid', 'alert' => 'warning']);
             }
         }
         else {
